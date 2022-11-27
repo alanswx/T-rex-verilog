@@ -11,7 +11,8 @@ module TRexTop(
 	       output reg [1:0] vgaBlue,
            output wire led,
           output wire run,
-          output wire dead);
+          output wire dead,
+			 output wire blank);
 
    localparam ratio = 1;
    localparam ScreenH = 9'd480;
@@ -140,7 +141,8 @@ module TRexTop(
            .Hsync(Hsync),
            .Vsync(Vsync),
            .X(x),
-           .Y(y));
+           .Y(y),
+			  .blank(blank));
 
    // End of VGA
 

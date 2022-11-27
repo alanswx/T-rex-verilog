@@ -5,7 +5,8 @@ module VGA(
 	   output wire 	      Vsync, //vertical sync out
      output wire        FPSClk,
 	   output wire [9:0] X,     // X counter coordinate
-	   output wire [8:0] Y      // Y counter Coordinate
+	   output wire [8:0] Y,      // Y counter Coordinate
+		output wire blank
      );                        
 
    /**********************
@@ -75,7 +76,7 @@ end
 
 assign Hsync = (hc < hpulse) ? 0:1;
 assign Vsync = (vc < vpulse) ? 0:1;
-
+assign blank = (hc >= hbp && vc >= vbp && hc<=hfp && vc<=vfp ) ? 0: 1;
 assign X = (hc >= hbp)? (hc-hbp):0;
 assign Y = (vc >= vbp)? (vc -vbp):0;
 
